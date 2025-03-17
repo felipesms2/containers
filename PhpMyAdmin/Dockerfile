@@ -8,7 +8,9 @@ RUN mkdir /app && chmod -R 777 /app && \
 apt-get update; apt upgrade -y; \
 apt install \
 zsh \
-sudo sqlite3 wget curl \
+sudo \
+wget \
+curl \
 sqlite3 \
 apache2 \
 php \
@@ -55,7 +57,7 @@ WORKDIR /app
 COPY ./envvars /etc/apache2/envvars
 COPY ./000-default.conf /etc/apache2/sites-enabled/000-default.conf
 COPY ./ports.conf /etc/apache2/ports.conf
-COPY  ./phpMyAdmin-5.2.2-all-languages.zip /app/phpMyAdmin-5.2.2-all-languages.zip
+COPY ./config.inc.php /app/pma/config.inc.php
 
 # docker build -t phpmyadmin:1.0 .
 # docker run --name phpmyadmin --network host -it -v $(pwd):/app phpmyadmin:1.0
